@@ -56,6 +56,33 @@ jobs:
           output_location: ""
           skip_app_build: true
 
+      # 6. Automated Search Crawler Submission (Mandatory Project Rule: IndexNow)
+      - name: Submit URLs to Search Crawlers
+        if: github.event_name == 'push'
+        run: |
+          python3 -c '
+          import json, urllib.request
+          try:
+              domain = "https://premierpouredwalls.com"
+              host = "premierpouredwalls.com"
+              urls = ["https://premierpouredwalls.com/", "https://premierpouredwalls.com/services", "https://premierpouredwalls.com/contact", "https://premierpouredwalls.com/about"]
+              payload = json.dumps({
+                  "host": host,
+                  "key": "e3d29a08c8474f63bb9b7d8b5c9632f1",
+                  "keyLocation": f"{domain}/e3d29a08c8474f63bb9b7d8b5c9632f1.txt",
+                  "urlList": urls
+              }).encode("utf-8")
+              for ep in ["https://api.indexnow.org/indexnow", "https://www.bing.com/indexnow"]:
+                  try:
+                      req = urllib.request.Request(ep, data=payload, headers={"Content-Type": "application/json; charset=utf-8", "User-Agent": "JBDigitalCI/1.0"})
+                      with urllib.request.urlopen(req, timeout=10) as resp:
+                          print(f"Submitted to {ep}: {resp.status}")
+                  except Exception as e:
+                      print(f"Crawler notice ({ep}): {e}")
+          except Exception as ex:
+              print(f"Crawler submission step notice: {ex}")
+          '
+
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
