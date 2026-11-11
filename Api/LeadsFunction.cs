@@ -111,6 +111,7 @@ namespace SmallBusinessSite.Api
             string? recipientEmail = Environment.GetEnvironmentVariable("LEAD_NOTIFICATION_EMAIL");
             string? senderEmail = Environment.GetEnvironmentVariable("BREVO_SENDER_EMAIL");
 
+            string? clientDomain = null;
             if (string.IsNullOrWhiteSpace(brevoApiKey) || string.IsNullOrWhiteSpace(recipientEmail) || string.IsNullOrWhiteSpace(senderEmail))
             {
                 if (TryGetCosmosCredentials(out string cEndpoint, out string cKey, out string cDbId))
@@ -118,6 +119,7 @@ namespace SmallBusinessSite.Api
                     var clientDoc = await LookupClientRecordAsync(cEndpoint, cKey, cDbId, businessId);
                     if (clientDoc != null)
                     {
+                        clientDomain = clientDoc.Domain;
                         if (string.IsNullOrWhiteSpace(brevoApiKey))
                             brevoApiKey = clientDoc.BrevoApiKey;
 
@@ -139,7 +141,7 @@ namespace SmallBusinessSite.Api
             {
                 try
                 {
-                    await SendBrevoNotificationAsync(brevoApiKey, senderEmail, recipientEmail, input);
+                    await SendBrevoNotificationAsync(brevoApiKey, senderEmail, recipientEmail, input, clientDomain);
                 }
                 catch (Exception ex)
                 {
@@ -258,20 +260,39 @@ namespace SmallBusinessSite.Api
             string brevoApiKey,
             string senderEmail,
             string recipientEmail,
-            LeadSubmissionDto lead)
+            LeadSubmissionDto lead,
+            string? fallbackDomain = null)
         {
-            string company = string.IsNullOrWhiteSpace(lead.CompanyName) ? lead.BusinessId : lead.CompanyName;
+            string company = string.IsNullOrWhiteSpace(lead.CompanyName) ? "Premier Poured Walls LLC" : lead.CompanyName;
+            string siteUrl = !string.IsNullOrWhiteSpace(lead.WebsiteUrl)
+                ? lead.WebsiteUrl
+                : (!string.IsNullOrWhiteSpace(fallbackDomain) ? fallbackDomain : "https://premierpouredwalls.com");
+            if (!siteUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
+                !siteUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            {
+                siteUrl = $"https://{siteUrl}";
+            }
+
             string htmlBody = $@"
-                <h2>New Website Inquiry — {WebUtility.HtmlEncode(company)}</h2>
-                <table style='border-collapse:collapse;font-family:sans-serif;'>
-                    <tr><td style='padding:6px 12px;font-weight:bold;'>Name:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.Name)}</td></tr>
-                    <tr><td style='padding:6px 12px;font-weight:bold;'>Phone:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.Phone)}</td></tr>
-                    <tr><td style='padding:6px 12px;font-weight:bold;'>Email:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.Email)}</td></tr>
-                    <tr><td style='padding:6px 12px;font-weight:bold;'>Preferred Contact:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.PreferredContactMethod)}</td></tr>
-                    <tr><td style='padding:6px 12px;font-weight:bold;'>Service Needed:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.ServiceType)}</td></tr>
-                    <tr><td style='padding:6px 12px;font-weight:bold;'>Preferred Start Date:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.PreferredStartDate ?? "N/A")}</td></tr>
-                    <tr><td style='padding:6px 12px;font-weight:bold;'>Message:</td><td style='padding:6px 12px;'>{WebUtility.HtmlEncode(lead.Message)}</td></tr>
-                </table>";
+                <div style='font-family:-apple-system,BlinkMacSystemFont,""Segoe UI"",Roboto,sans-serif;max-width:640px;margin:0 auto;padding:24px;background:#ffffff;border:1px solid #e2e8f0;border-radius:10px;'>
+                    <div style='border-bottom:3px solid #0284c7;padding-bottom:12px;margin-bottom:20px;'>
+                        <h2 style='margin:0;color:#0f2b48;font-size:22px;'>New Website Inquiry — {WebUtility.HtmlEncode(company)}</h2>
+                        <p style='margin:6px 0 0;font-size:14px;color:#64748b;'>Received from <a href='{WebUtility.HtmlEncode(siteUrl)}' style='color:#0284c7;text-decoration:none;font-weight:600;'>{WebUtility.HtmlEncode(siteUrl)}</a></p>
+                    </div>
+                    <table style='width:100%;border-collapse:collapse;margin-bottom:24px;'>
+                        <tr style='background:#f8fafc;'><td style='padding:10px 14px;font-weight:bold;color:#334155;width:160px;border-bottom:1px solid #e2e8f0;'>Name:</td><td style='padding:10px 14px;color:#0f172a;border-bottom:1px solid #e2e8f0;'>{WebUtility.HtmlEncode(lead.Name)}</td></tr>
+                        <tr><td style='padding:10px 14px;font-weight:bold;color:#334155;border-bottom:1px solid #e2e8f0;'>Phone:</td><td style='padding:10px 14px;color:#0f172a;border-bottom:1px solid #e2e8f0;'><a href='tel:{WebUtility.HtmlEncode(lead.Phone)}' style='color:#0284c7;font-weight:600;text-decoration:none;'>{WebUtility.HtmlEncode(lead.Phone)}</a></td></tr>
+                        <tr style='background:#f8fafc;'><td style='padding:10px 14px;font-weight:bold;color:#334155;border-bottom:1px solid #e2e8f0;'>Email:</td><td style='padding:10px 14px;color:#0f172a;border-bottom:1px solid #e2e8f0;'><a href='mailto:{WebUtility.HtmlEncode(lead.Email)}' style='color:#0284c7;font-weight:600;text-decoration:none;'>{WebUtility.HtmlEncode(lead.Email)}</a></td></tr>
+                        <tr><td style='padding:10px 14px;font-weight:bold;color:#334155;border-bottom:1px solid #e2e8f0;'>Preferred Contact:</td><td style='padding:10px 14px;color:#0f172a;border-bottom:1px solid #e2e8f0;'>{WebUtility.HtmlEncode(lead.PreferredContactMethod)}</td></tr>
+                        <tr style='background:#f8fafc;'><td style='padding:10px 14px;font-weight:bold;color:#334155;border-bottom:1px solid #e2e8f0;'>Service Needed:</td><td style='padding:10px 14px;color:#0f172a;border-bottom:1px solid #e2e8f0;'><strong>{WebUtility.HtmlEncode(lead.ServiceType)}</strong></td></tr>
+                        <tr><td style='padding:10px 14px;font-weight:bold;color:#334155;border-bottom:1px solid #e2e8f0;'>Preferred Start:</td><td style='padding:10px 14px;color:#0f172a;border-bottom:1px solid #e2e8f0;'>{WebUtility.HtmlEncode(lead.PreferredStartDate ?? "Flexible / As soon as possible")}</td></tr>
+                        <tr style='background:#f8fafc;'><td style='padding:10px 14px;font-weight:bold;color:#334155;vertical-align:top;border-bottom:1px solid #e2e8f0;'>Message:</td><td style='padding:10px 14px;color:#0f172a;white-space:pre-wrap;border-bottom:1px solid #e2e8f0;'>{WebUtility.HtmlEncode(lead.Message)}</td></tr>
+                    </table>
+                    <div style='text-align:center;padding:16px 0 8px;border-top:1px solid #e2e8f0;'>
+                        <a href='{WebUtility.HtmlEncode(siteUrl)}' style='display:inline-block;background-color:#0f2b48;color:#ffffff;font-size:14px;font-weight:600;padding:12px 24px;border-radius:6px;text-decoration:none;'>Visit {WebUtility.HtmlEncode(company)} Website</a>
+                        <p style='margin:12px 0 0;font-size:12px;color:#94a3b8;'>Submitted from <a href='{WebUtility.HtmlEncode(siteUrl)}' style='color:#0284c7;text-decoration:none;'>{WebUtility.HtmlEncode(siteUrl)}</a></p>
+                    </div>
+                </div>";
 
             var payload = new
             {
@@ -299,6 +320,7 @@ namespace SmallBusinessSite.Api
     {
         public string BusinessId { get; set; } = string.Empty;
         public string CompanyName { get; set; } = string.Empty;
+        public string? WebsiteUrl { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
@@ -316,6 +338,9 @@ namespace SmallBusinessSite.Api
 
         [JsonPropertyName("businessId")]
         public string BusinessId { get; set; } = string.Empty;
+
+        [JsonPropertyName("domain")]
+        public string? Domain { get; set; }
 
         [JsonPropertyName("primaryEmail")]
         public string? PrimaryEmail { get; set; }
