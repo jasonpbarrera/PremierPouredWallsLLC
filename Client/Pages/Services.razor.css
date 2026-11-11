@@ -1,121 +1,190 @@
-.services-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    color: var(--brand-primary);
+/* ==========================================================================
+   SERVICES PAGE STYLES (SERVICES.RAZOR.CSS)
+   ========================================================================== */
+
+.services-page-wrapper {
+    background-color: #f8fafc;
+    padding-bottom: 5rem;
 }
 
-.services-header {
-    text-align: center;
-    margin-bottom: 3rem;
+.services-hero-header {
+    background: linear-gradient(135deg, #0a1118 0%, #151f2b 100%);
+    color: #ffffff;
+    padding: 4rem 0 3.5rem 0;
+    border-bottom: 4px solid var(--brand-accent);
 }
 
-    .services-header h1 {
-        font-size: 2.5rem;
-        color: var(--brand-primary);
-        margin-bottom: 1rem;
-    }
+.services-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+}
 
-.lead-text {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto;
+.services-hero-lead {
+    font-size: 1.15rem;
+    color: #94a3b8;
+    max-width: 720px;
     line-height: 1.6;
+    margin: 0;
 }
 
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+/* SERVICES DETAIL LIST */
+.services-detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    margin-top: 3.5rem;
     margin-bottom: 4rem;
 }
 
-.service-card {
-    background-color: var(--white);
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border-top: 4px solid var(--brand-accent);
-    transition: transform 0.3s ease;
+.service-detail-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(10, 17, 24, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-    .service-card:hover {
-        transform: translateY(-5px);
-    }
-
-.service-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 68px;
-    height: 68px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #0f2b48 0%, #1e3a5f 100%);
-    color: #38bdf8;
-    margin: 0 auto 1.25rem auto;
-    box-shadow: 0 6px 16px rgba(15, 43, 72, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(56, 189, 248, 0.35);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+.service-detail-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(10, 17, 24, 0.09);
 }
 
-.service-card:hover .service-icon {
-    transform: scale(1.08);
-    border-color: #38bdf8;
-    color: #ffffff;
+.service-detail-card.reverse {
+    flex-direction: row-reverse;
 }
 
-::deep .tough-svg {
-    width: 38px;
-    height: 38px;
+.service-img-col {
+    flex: 1 1 420px;
+    min-height: 340px;
+    position: relative;
+    background-color: #0a1118;
+}
+
+.service-img-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
-.service-card h3 {
-    color: var(--brand-primary);
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+.service-chip {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(10, 17, 24, 0.9);
+    color: var(--brand-accent-glow);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 3px;
+    backdrop-filter: blur(4px);
+    text-transform: uppercase;
 }
 
-.community-section {
-    text-align: center;
-    background-color: var(--brand-surface);
-    padding: 3rem 2rem;
-    border-radius: 12px;
-    margin-bottom: 4rem;
-}
-
-    .community-section h2 {
-        font-size: 2rem;
-        color: var(--brand-primary);
-        margin-bottom: 1rem;
-    }
-
-.hiring-banner {
-    background-color: var(--white);
-    border: 2px dashed var(--brand-accent);
-    border-radius: 12px;
-    padding: 3rem 2rem;
-    text-align: center;
-}
-
-    .hiring-banner h2 {
-        font-family: var(--font-heading);
-        color: var(--brand-accent);
-        font-size: 2.5rem;
-        font-style: italic;
-        margin-bottom: 1rem;
-    }
-
-    .hiring-banner p {
-        font-size: 1.1rem;
-        max-width: 600px;
-        margin: 0 auto 2rem auto;
-    }
-
-.hiring-actions {
+.service-content-col {
+    flex: 1 1 480px;
+    padding: 3rem 2.5rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 1rem;
+}
+
+.service-content-col h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.3rem);
+    color: var(--brand-primary);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.service-content-col p {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.service-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+}
+
+.service-feature-list li {
+    font-size: 0.95rem;
+    color: #334155;
+    margin-bottom: 0.65rem;
+    position: relative;
+    padding-left: 1.5rem;
+    line-height: 1.5;
+}
+
+.service-feature-list li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--brand-accent);
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.service-feature-list strong {
+    color: var(--brand-primary);
+}
+
+/* BOTTOM CTA BANNER */
+.services-cta-banner {
+    background: linear-gradient(135deg, #0a1118 0%, #151f2b 100%);
+    border-radius: 8px;
+    border-left: 6px solid var(--brand-accent);
+    padding: 3.5rem 3rem;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
+    gap: 2rem;
+    box-shadow: 0 12px 30px rgba(10, 17, 24, 0.15);
+}
+
+.services-cta-banner h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.6rem);
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.services-cta-banner p {
+    color: #94a3b8;
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+@media (max-width: 850px) {
+    .service-detail-card,
+    .service-detail-card.reverse {
+        flex-direction: column;
+    }
+
+    .service-img-col {
+        min-height: 240px;
+    }
+
+    .service-content-col {
+        padding: 2rem 1.5rem;
+    }
+
+    .services-cta-banner {
+        padding: 2rem 1.5rem;
+    }
 }

@@ -2,155 +2,294 @@
 @inject IOptions<BusinessSettings> BusinessConfig
 @inject IOptions<HomePageSettings> HomeConfig
 
-<PageTitle>@BusinessConfig.Value.ShortName | @BusinessConfig.Value.CompanyName</PageTitle>
+<PageTitle>@BusinessConfig.Value.ShortName | Solid Poured Concrete Basements & Retaining Walls</PageTitle>
 
 <!-- HERO SECTION -->
-<section class="hero-section">
-    <div class="hero-content">
-        <h1>@BusinessConfig.Value.CompanyName</h1>
-        <p class="tagline">@BusinessConfig.Value.Tagline</p>
-        <p class="hero-description">@HomeConfig.Value.HeroDescription</p>
-        <div class="hero-actions">
-            <a href="/contact" class="btn btn-primary">@HomeConfig.Value.PrimaryCtaText</a>
-            <a href="/about" class="btn btn-secondary">@HomeConfig.Value.SecondaryCtaText</a>
+<section class="industrial-hero">
+    <div class="hero-overlay-container">
+        <div class="hero-content-box">
+            <div class="hero-kicker-badge">
+                <span class="pulse-indicator"></span>
+                <span>MONOLITHIC CONCRETE FOUNDATIONS • SOUTHEAST TN &amp; NORTH GA</span>
+            </div>
+
+            <h1 class="hero-title">
+                SOLID POURED WALLS.<br />
+                <span class="text-accent-gradient">BUILT LIKE A FORTRESS.</span>
+            </h1>
+
+            <p class="hero-lead">
+                Turnkey residential basements, engineered radius retaining walls, laser-graded footings, and Fort Knox-grade tornado safe rooms throughout Cleveland, Chattanooga, and surrounding regional terrain.
+            </p>
+
+            <div class="hero-actions">
+                <a href="/contact" class="btn btn-primary hero-btn">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    <span>Request Free Estimate</span>
+                </a>
+                <a href="tel:@BusinessConfig.Value.PhoneNumber" class="btn btn-secondary hero-btn">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+                    <span>Call Scott: @BusinessConfig.Value.PhoneNumber</span>
+                </a>
+            </div>
+
+            <div class="hero-guarantee-bar">
+                <span>✓ On-Site Owner Leadership</span>
+                <span>✓ 4,000+ PSI Concrete</span>
+                <span>✓ Turnkey Footing Dig to Strip</span>
+                <span>✓ Continuous Monolithic Pour</span>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- VALUES SECTION -->
-@if (!string.IsNullOrWhiteSpace(HomeConfig.Value.ValuesHeading))
-{
-    <section class="values-section">
-        <h2>@HomeConfig.Value.ValuesHeading</h2>
-        <p class="values-subtitle">@HomeConfig.Value.ValuesSubtitle</p>
-    </section>
-}
-
-<!-- MISSION PILLARS SECTION -->
-<section class="pillars-section">
-    @foreach (var pillar in HomeConfig.Value.Pillars)
-    {
-        <div class="pillar-card">
-            <div class="icon-placeholder">
-                <ToughIcon Name="@pillar.Icon" CssClass="tough-svg" />
-            </div>
-            <h3>@pillar.Title</h3>
-            <p>@pillar.Description</p>
+<!-- INDUSTRIAL SPECS TICKER BAR -->
+<section class="specs-bar">
+    <div class="specs-grid">
+        <div class="spec-card">
+            <span class="spec-value">4,000+ PSI</span>
+            <span class="spec-label">High-Strength Ready-Mix</span>
+            <span class="spec-sub">Continuous boom-pump pour</span>
         </div>
-    }
+        <div class="spec-card">
+            <span class="spec-value">100% SOLID</span>
+            <span class="spec-label">Monolithic Wall Structure</span>
+            <span class="spec-sub">Zero weak mortar seams</span>
+        </div>
+        <div class="spec-card">
+            <span class="spec-value">FORT KNOX</span>
+            <span class="spec-label">Tornado Safe Rooms</span>
+            <span class="spec-sub">Steel-reinforced ceiling slabs</span>
+        </div>
+        <div class="spec-card">
+            <span class="spec-value">EXCAVATE TO POUR</span>
+            <span class="spec-label">Turnkey Footing Execution</span>
+            <span class="spec-sub">Laser-graded rebar cages</span>
+        </div>
+    </div>
 </section>
 
+<!-- CORE CAPABILITIES (PILLARS) -->
+<section class="capabilities-section">
+    <div class="content-container">
+        <div class="section-header-block">
+            <div class="industrial-kicker">Engineered For Brutal Lateral Soil Pressure</div>
+            <h2 class="section-title">POURED SOLID. BUILT TO LAST GENERATIONS.</h2>
+            <p class="section-lead">
+                Hollow concrete blocks crack, shift, and allow water to seep through hundreds of mortar joints. Premier Poured Walls pours monolithic, steel-reinforced structural concrete that locks your foundation in place forever.
+            </p>
+        </div>
+
+        <div class="capabilities-grid">
+            @foreach (var pillar in HomeConfig.Value.Pillars)
+            {
+                <div class="capability-card">
+                    <div class="capability-icon-box">
+                        <ToughIcon Name="@pillar.Icon" CssClass="tough-svg" />
+                    </div>
+                    <div class="capability-content">
+                        <h3>@pillar.Title</h3>
+                        <p>@pillar.Description</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- POURED WALLS VS CINDER BLOCK COMPARISON -->
+<section class="comparison-section">
+    <div class="content-container">
+        <div class="section-header-block text-center">
+            <div class="industrial-kicker industrial-kicker-hazard">The Engineering Truth</div>
+            <h2 class="section-title text-light">WHY POURED CONCRETE BEATS HOLLOW BLOCK</h2>
+            <p class="section-lead text-light-muted">
+                Understanding why modern builders and engineers specify poured-in-place concrete foundations over traditional cinder block (CMU).
+            </p>
+        </div>
+
+        <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Structural Property</th>
+                        <th class="col-highlight">Premier Poured Concrete Walls</th>
+                        <th class="col-block">Traditional Hollow Cinder Block</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Flexural &amp; Lateral Strength</strong></td>
+                        <td class="col-highlight"><span class="badge-check">✓ Up to 3x Greater Strength</span> — Resists heavy mountain backfill and soil expansion.</td>
+                        <td class="col-block"><span class="badge-cross">✕ Prone to Buckling</span> — Vulnerable along horizontal mortar joints under backfill pressure.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Water &amp; Moisture Resistance</strong></td>
+                        <td class="col-highlight"><span class="badge-check">✓ Monolithic Water Barrier</span> — Continuous solid concrete with no mortar joints to leak.</td>
+                        <td class="col-block"><span class="badge-cross">✕ Hollow Cores Fill with Water</span> — Hundreds of porous mortar joints that decay over time.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Construction Speed</strong></td>
+                        <td class="col-highlight"><span class="badge-check">✓ 1-Day Placement</span> — Continuous boom-pump pour with next-day form stripping.</td>
+                        <td class="col-block"><span class="badge-cross">✕ Weeks of Stacking</span> — Labor-heavy, slow, and highly weather-dependent.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Structural Integrity</strong></td>
+                        <td class="col-highlight"><span class="badge-check">✓ Solid Rebar Grid</span> — Steel reinforcement completely encapsulated in 4,000 PSI concrete.</td>
+                        <td class="col-block"><span class="badge-cross">✕ Partially Grouted</span> — Many cells left unpoured and unreinforced to save costs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Storm &amp; Tornado Security</strong></td>
+                        <td class="col-highlight"><span class="badge-check">✓ Fort Knox Grade</span> — Can support thick poured concrete ceilings for storm safe rooms.</td>
+                        <td class="col-block"><span class="badge-cross">✕ Cannot Support Concrete Deck</span> — Mortar joints easily fail under extreme uplift and projectile impacts.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ON-SITE WORK & PROJECT GALLERY -->
+<section class="gallery-section">
+    <div class="content-container">
+        <div class="section-header-block">
+            <div class="industrial-kicker">Authentic Regional Project Portfolio</div>
+            <h2 class="section-title">ON-SITE WORK &amp; PROJECT GALLERY</h2>
+            <p class="section-lead">
+                Every photo below represents actual projects formed and poured by Scott Barrera and the Premier crew across Southeast Tennessee and North Georgia.
+            </p>
+        </div>
+
+        @if (HomeConfig.Value.Gallery != null && HomeConfig.Value.Gallery.Any())
+        {
+            <div class="gallery-grid">
+                @foreach (var item in HomeConfig.Value.Gallery)
+                {
+                    <div class="gallery-card">
+                        @if (!string.IsNullOrWhiteSpace(item.ImageUrl))
+                        {
+                            <div class="gallery-img-wrapper">
+                                <img src="@item.ImageUrl" alt="@item.Title" loading="lazy" />
+                                <span class="gallery-badge">@item.Category</span>
+                            </div>
+                        }
+                        <div class="gallery-info">
+                            <span class="gallery-location">📍 @item.Location</span>
+                            <h3>@item.Title</h3>
+                            <p class="gallery-desc">@item.Description</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+<!-- SCOTT BARRERA FOUNDER STORY -->
 @if (!string.IsNullOrWhiteSpace(HomeConfig.Value.StoryQuote))
 {
-    <section class="our-story-section">
-        <div class="container">
-            <h2>@HomeConfig.Value.StoryHeading</h2>
-            <p class="our-story-quote">"@HomeConfig.Value.StoryQuote"</p>
-            <p><strong>- @HomeConfig.Value.StoryAttribution</strong></p>
+    <section class="story-section">
+        <div class="content-container">
+            <div class="story-banner-card">
+                <div class="story-content">
+                    <div class="industrial-kicker industrial-kicker-hazard">Owner Commitment</div>
+                    <h2>@HomeConfig.Value.StoryHeading</h2>
+                    <blockquote class="story-quote">
+                        "@HomeConfig.Value.StoryQuote"
+                    </blockquote>
+                    <p class="story-attribution">— @HomeConfig.Value.StoryAttribution</p>
+                    <div class="story-actions">
+                        <a href="/about" class="btn btn-secondary">Read Scott's Story</a>
+                        <a href="tel:@BusinessConfig.Value.PhoneNumber" class="btn btn-primary">Call (423) 457-2024</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 }
 
-<!-- JOB-SITE GALLERY & RECENT WORK -->
-<section class="gallery-section">
-    <h2>On-Site Work & Project Gallery</h2>
-    <p class="gallery-subtitle">Real foundation and drainage installations across Southeast Tennessee</p>
-
-    @if (HomeConfig.Value.Gallery != null && HomeConfig.Value.Gallery.Any())
-    {
-        <div class="gallery-grid">
-            @foreach (var item in HomeConfig.Value.Gallery)
-            {
-                <div class="gallery-card">
-                    @if (!string.IsNullOrWhiteSpace(item.ImageUrl))
-                    {
-                        <div class="gallery-img-wrapper">
-                            <img src="@item.ImageUrl" alt="@item.Title" loading="lazy" />
-                        </div>
-                    }
-                    <div class="gallery-info">
-                        <span class="gallery-badge">@item.Category</span>
-                        <h3>@item.Title</h3>
-                        <p class="gallery-location">📍 @item.Location</p>
-                        <p class="gallery-desc">@item.Description</p>
-                    </div>
-                </div>
-            }
-        </div>
-    }
-
-    <div class="gallery-cta">
-        <a href="@BusinessConfig.Value.FacebookUrl" target="_blank" rel="noopener" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
-            <span>Browse All Recent Job-Site Photos on Facebook →</span>
-        </a>
-    </div>
-</section>
-
-
-<!-- CUSTOMER REVIEWS & TESTIMONIALS -->
+<!-- CLIENT TESTIMONIALS -->
 @if (HomeConfig.Value.Testimonials != null && HomeConfig.Value.Testimonials.Any())
 {
-    <section class="reviews-section">
-        <h2>What Our Neighbors Say</h2>
-        <p class="reviews-subtitle">Real feedback from homeowners and builders across Southeast Tennessee</p>
-        <div class="reviews-grid">
-            @foreach (var review in HomeConfig.Value.Testimonials)
-            {
-                <div class="review-card">
-                    <div>
-                        <div class="review-stars">
-                            @for (int i = 0; i < review.Rating; i++)
-                            {
-                                <span>★</span>
-                            }
+    <section class="testimonials-section">
+        <div class="content-container">
+            <div class="section-header-block text-center">
+                <div class="industrial-kicker">Verified Builder &amp; Homeowner Feedback</div>
+                <h2 class="section-title">REPUTATION POURED IN CONCRETE</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                @foreach (var t in HomeConfig.Value.Testimonials)
+                {
+                    <div class="testimonial-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p class="testimonial-quote">"@t.Quote"</p>
+                        <div class="testimonial-meta">
+                            <strong>@t.Author</strong>
+                            <span>@t.Location • @t.ProjectType</span>
                         </div>
-                        <p class="review-quote">"@review.Quote"</p>
                     </div>
-                    <div>
-                        <div class="review-author">@review.Author</div>
-                        <div class="review-meta">@review.Location • @review.ProjectType</div>
-                    </div>
-                </div>
-            }
-        </div>
-        <div class="review-cta">
-            <a href="@BusinessConfig.Value.FacebookUrl" target="_blank" rel="noopener" class="btn btn-secondary">
-                View More Reviews & Photos on Facebook →
-            </a>
+                }
+            </div>
         </div>
     </section>
 }
 
-<!-- FAQ SECTION -->
+<!-- FREQUENTLY ASKED QUESTIONS -->
 @if (HomeConfig.Value.Faqs != null && HomeConfig.Value.Faqs.Any())
 {
-    <section class="faq-section">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-list">
-            @foreach (var faq in HomeConfig.Value.Faqs)
-            {
-                <details class="faq-item">
-                    <summary>@faq.Question</summary>
-                    <p>@faq.Answer</p>
-                </details>
-            }
+    <section class="faqs-section">
+        <div class="content-container">
+            <div class="section-header-block">
+                <div class="industrial-kicker">Expert Contractor Insights</div>
+                <h2 class="section-title">FOUNDATION &amp; POUR QUESTIONS</h2>
+            </div>
+
+            <div class="faqs-grid">
+                @foreach (var faq in HomeConfig.Value.Faqs)
+                {
+                    <div class="faq-item">
+                        <h3>@faq.Question</h3>
+                        <p>@faq.Answer</p>
+                    </div>
+                }
+            </div>
         </div>
     </section>
 }
 
-<!-- REGIONAL SERVICE AREAS -->
+<!-- SERVICE AREA COVERAGE -->
 @if (HomeConfig.Value.ServiceAreas != null && HomeConfig.Value.ServiceAreas.Any())
 {
     <section class="service-areas-section">
-        <h2>Serving Southeast Tennessee</h2>
-        <p>Reliable on-site consultations, footer treatments, and French drains throughout our region:</p>
-        <div class="area-tags">
-            @foreach (var area in HomeConfig.Value.ServiceAreas)
-            {
-                <span class="area-tag">📍 @area</span>
-            }
+        <div class="content-container text-center">
+            <div class="industrial-kicker">Regional Service Coverage</div>
+            <h2 class="section-title">PROUDLY SERVING SOUTHEAST TN &amp; NORTH GA</h2>
+            <p class="section-lead" style="margin-left: auto; margin-right: auto;">
+                Headquartered in Cleveland, TN, Scott and the crew travel across steep mountain passes and valley developments with full steel form setups.
+            </p>
+            <div class="areas-badge-cloud">
+                @foreach (var area in HomeConfig.Value.ServiceAreas)
+                {
+                    <span class="area-badge">📍 @area</span>
+                }
+            </div>
         </div>
     </section>
 }
 
+<!-- FINAL CALL TO ACTION BAR -->
+<section class="final-cta-section">
+    <div class="content-container">
+        <div class="final-cta-box">
+            <div class="final-cta-text">
+                <h2>READY TO POUR A SOLID FOUNDATION UNDER YOUR DREAM HOME?</h2>
+                <p>Call Scott directly to discuss your blueprints, footing specs, radius retaining walls, or tornado safe room plans.</p>
+            </div>
+            <div class="final-cta-buttons">
+                <a href="/contact" class="btn btn-primary">Request Free Estimate</a>
+                <a href="tel:@BusinessConfig.Value.PhoneNumber" class="btn btn-secondary">Call (423) 457-2024</a>
+            </div>
+        </div>
+    </div>
+</section>

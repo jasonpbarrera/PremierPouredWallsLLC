@@ -2,49 +2,122 @@
 @inject IOptions<BusinessSettings> BusinessConfig
 @inject IOptions<ServicesPageSettings> ServicesConfig
 
-<PageTitle>Services | @BusinessConfig.Value.ShortName</PageTitle>
+<PageTitle>Services &amp; Concrete Capabilities | @BusinessConfig.Value.ShortName</PageTitle>
 
-<div class="services-container">
-    <div class="services-header">
-        <h1>@ServicesConfig.Value.Heading</h1>
-        <p class="lead-text">@ServicesConfig.Value.LeadText</p>
-    </div>
-
-    <!-- Core Services Grid -->
-    <div class="services-grid">
-        @foreach (var service in ServicesConfig.Value.Services)
-        {
-            <div class="service-card">
-                <div class="service-icon">
-                    <ToughIcon Name="@service.Icon" CssClass="tough-svg" />
-                </div>
-                <h3>@service.Title</h3>
-                <p>@service.Description</p>
-            </div>
-        }
-    </div>
-
-    <!-- Community / Spotlight Section -->
-    @if (!string.IsNullOrWhiteSpace(ServicesConfig.Value.SpotlightHeading))
-    {
-        <div class="community-section">
-            <h2>@ServicesConfig.Value.SpotlightHeading</h2>
-            <p>@ServicesConfig.Value.SpotlightText</p>
+<div class="services-page-wrapper">
+    <!-- HERO HEADER -->
+    <section class="services-hero-header">
+        <div class="content-container">
+            <div class="industrial-kicker industrial-kicker-hazard">Commercial &amp; Residential Concrete Services</div>
+            <h1 class="services-hero-title">ENGINEERED CONCRETE CAPABILITIES</h1>
+            <p class="services-hero-lead">
+                Monolithic poured foundations, precision radius retaining walls, and Fort Knox-grade tornado safe rooms engineered for Southeast Tennessee and North Georgia terrain.
+            </p>
         </div>
-    }
+    </section>
 
-    <!-- Optional Hiring Banner -->
-    @if (ServicesConfig.Value.ShowHiringBanner)
-    {
-        <div class="hiring-banner">
-            <div class="hiring-content">
-                <h2>@ServicesConfig.Value.HiringHeading</h2>
-                <p>@ServicesConfig.Value.HiringText</p>
-                <div class="hiring-actions">
-                    <a href="tel:@BusinessConfig.Value.PhoneNumber" class="btn btn-primary">Call to Apply</a>
-                    <a href="mailto:@BusinessConfig.Value.AdminEmail" class="btn btn-secondary">Email Resume</a>
+    <div class="content-container">
+        <!-- SERVICES DETAILED CARDS -->
+        <div class="services-detail-list">
+            <!-- 1. POURED BASEMENTS -->
+            <div class="service-detail-card">
+                <div class="service-img-col">
+                    <img src="images/projects/project-1.jpg" alt="Poured Concrete Basement Walls" loading="lazy" />
+                    <span class="service-chip">Residential &amp; Commercial</span>
+                </div>
+                <div class="service-content-col">
+                    <div class="industrial-kicker">Core Specialization</div>
+                    <h2>POURED CONCRETE BASEMENTS &amp; FOUNDATIONS</h2>
+                    <p>
+                        Monolithic poured-in-place concrete walls provide up to three times greater flexural strength than traditional cinder block, with zero weak mortar joints. Steel forms are laser-aligned, reinforced with continuous vertical and horizontal rebar grids, and poured with high-strength ready-mix concrete for lifetime water resistance and lateral backfill support.
+                    </p>
+                    <ul class="service-feature-list">
+                        <li><strong>Monolithic Strength:</strong> Eliminates mortar joint cracking and water seepage.</li>
+                        <li><strong>4,000+ PSI Ready-Mix:</strong> High-density vibrated concrete for maximum durability.</li>
+                        <li><strong>Flexible Heights:</strong> Steel forms capable of pouring 8ft, 9ft, 10ft, 12ft, and custom wall heights.</li>
+                        <li><strong>On-Site Owner Supervised:</strong> Scott oversees every boom-pump pour personally.</li>
+                    </ul>
+                    <a href="/contact" class="btn btn-primary" style="margin-top: 1.25rem;">Request Basement Quote</a>
                 </div>
             </div>
+
+            <!-- 2. RADIUS & RETAINING WALLS -->
+            <div class="service-detail-card reverse">
+                <div class="service-img-col">
+                    <img src="images/projects/project-2.jpg" alt="Radius Curved Concrete Retaining Walls" loading="lazy" />
+                    <span class="service-chip">Hillside Stabilization</span>
+                </div>
+                <div class="service-content-col">
+                    <div class="industrial-kicker">Engineered Mountain Solutions</div>
+                    <h2>CURVED RADIUS &amp; HILLSIDE RETAINING WALLS</h2>
+                    <p>
+                        Southeast Tennessee's steep elevations require specialized retaining structures. We form and pour custom curved radius walls and heavy-duty structural retaining walls engineered to hold back thousands of pounds of mountain soil, red clay, and hydraulic pressure.
+                    </p>
+                    <ul class="service-feature-list">
+                        <li><strong>Radius Curves:</strong> Custom flexible forming for sweeping architectural curves.</li>
+                        <li><strong>Heavy Rebar Cages:</strong> Sized and spaced for extreme lateral earth pressures.</li>
+                        <li><strong>Steep Hillside Access:</strong> Experienced operating on rugged mountain cuts.</li>
+                        <li><strong>Integrated Weep Holes:</strong> Engineered drainage relief systems to prevent hydrostatic buildup.</li>
+                    </ul>
+                    <a href="/contact" class="btn btn-primary" style="margin-top: 1.25rem;">Discuss Retaining Wall</a>
+                </div>
+            </div>
+
+            <!-- 3. STORM SHELTERS & SAFE ROOMS -->
+            <div class="service-detail-card">
+                <div class="service-img-col">
+                    <img src="images/projects/project-3.jpg" alt="Tornado Safe Room and Storm Shelter" loading="lazy" />
+                    <span class="service-chip">FEMA &amp; ICC-500 Grade</span>
+                </div>
+                <div class="service-content-col">
+                    <div class="industrial-kicker industrial-kicker-hazard">Life-Saving Protection</div>
+                    <h2>FORT KNOX TORNADO SAFE ROOMS &amp; STORM SHELTERS</h2>
+                    <p>
+                        Tennessee weather demands serious tornado protection. Premier Poured Walls designs and pours custom reinforced safe rooms directly into your foundation footprint or as freestanding outbuildings. Built like Fort Knox with 8-inch solid concrete walls and monolithic steel-reinforced poured ceilings that easily withstand extreme tornado debris impacts and roof collapses.
+                    </p>
+                    <ul class="service-feature-list">
+                        <li><strong>Poured Concrete Ceiling Slab:</strong> Heavy rebar grid supports tons of debris load.</li>
+                        <li><strong>Steel Door Framing:</strong> Embedded anchors ready for FEMA-compliant blast doors.</li>
+                        <li><strong>Dual-Purpose Space:</strong> Excellent for gun vaults, panic rooms, or secure storage.</li>
+                        <li><strong>Integrated Footprint:</strong> Seamlessly poured right alongside your home's foundation.</li>
+                    </ul>
+                    <a href="/contact" class="btn btn-primary" style="margin-top: 1.25rem;">Get Safe Room Pricing</a>
+                </div>
+            </div>
+
+            <!-- 4. TURNKEY EXCAVATION & FOOTINGS -->
+            <div class="service-detail-card reverse">
+                <div class="service-img-col">
+                    <img src="images/projects/project-8.jpg" alt="Footing Dig and Laser Grading" loading="lazy" />
+                    <span class="service-chip">Dig to Finish</span>
+                </div>
+                <div class="service-content-col">
+                    <div class="industrial-kicker">Turnkey Foundation Prep</div>
+                    <h2>EXCAVATION, FOOTING DIGS &amp; SITE PREPARATION</h2>
+                    <p>
+                        A solid wall requires an uncompromising footing. We provide complete turnkey service starting from the initial track excavator dig. Using high-precision rotating laser levels, we trench footings to exact engineering specifications, install heavy rebar grounding cages, and pour high-compressive spread footings ready for wall formwork.
+                    </p>
+                    <ul class="service-feature-list">
+                        <li><strong>Laser-Guided Accuracy:</strong> Eliminates high/low spots for perfectly level walls.</li>
+                        <li><strong>Rock &amp; Clay Trenching:</strong> Heavy equipment ready for tough Tennessee soil conditions.</li>
+                        <li><strong>Rebar Grounding &amp; Keyways:</strong> Continuous interlocking connection into the poured wall.</li>
+                        <li><strong>Clean Site Turnover:</strong> Efficient staging, pouring, and backfill readiness.</li>
+                    </ul>
+                    <a href="/contact" class="btn btn-primary" style="margin-top: 1.25rem;">Schedule Site Evaluation</a>
+                </div>
+            </div>
         </div>
-    }
+
+        <!-- BOTTOM CALL TO ACTION -->
+        <div class="services-cta-banner">
+            <div>
+                <h2>READY TO START YOUR CONCRETE PROJECT?</h2>
+                <p>Call Scott Barrera directly to discuss your foundation plans, retaining wall specs, or schedule a site visit.</p>
+            </div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="tel:@BusinessConfig.Value.PhoneNumber" class="btn btn-primary">Call (423) 457-2024</a>
+                <a href="/contact" class="btn btn-secondary">Request Free Estimate</a>
+            </div>
+        </div>
+    </div>
 </div>

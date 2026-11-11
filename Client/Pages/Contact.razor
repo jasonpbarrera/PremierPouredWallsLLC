@@ -3,109 +3,151 @@
 @inject IOptions<ContactPageSettings> ContactConfig
 @inject HttpClient Http
 
-<PageTitle>Contact | @BusinessConfig.Value.ShortName</PageTitle>
+<PageTitle>Request an Estimate | @BusinessConfig.Value.ShortName</PageTitle>
 
-<div class="contact-container">
-    <!-- Left Side: Contact Info -->
-    <div class="contact-info">
-        <h2>@ContactConfig.Value.Heading</h2>
-        <p>@ContactConfig.Value.LeadText</p>
-
-        <div class="info-item">
-            <strong>Phone:</strong><br />
-            <a href="tel:@BusinessConfig.Value.PhoneNumber">@BusinessConfig.Value.PhoneNumber</a>
+<div class="contact-page-wrapper">
+    <!-- HERO HEADER -->
+    <section class="contact-hero-header">
+        <div class="content-container">
+            <div class="industrial-kicker industrial-kicker-hazard">Direct Contractor Communication</div>
+            <h1 class="contact-hero-title">REQUEST A FREE FOUNDATION ESTIMATE</h1>
+            <p class="contact-hero-lead">
+                Scott Barrera personally reviews all blueprints, footing depths, radius wall specs, and tornado safe room plans.
+            </p>
         </div>
-        <div class="info-item">
-            <strong>Email:</strong><br />
-            <a href="mailto:@BusinessConfig.Value.PrimaryEmail">@BusinessConfig.Value.PrimaryEmail</a>
-        </div>
-        @if (!string.IsNullOrWhiteSpace(BusinessConfig.Value.AdminEmail))
-        {
-            <div class="info-item">
-                <strong>Careers / Admin:</strong><br />
-                <a href="mailto:@BusinessConfig.Value.AdminEmail">@BusinessConfig.Value.AdminEmail</a>
-            </div>
-        }
-    </div>
+    </section>
 
-    <!-- Right Side: The Form -->
-    <div class="contact-form-wrapper">
-        @if (isSubmitted)
-        {
-            <div class="success-message">
-                <h3>Thank You! ♡</h3>
-                <p>Your message has been sent. We will be in touch with you shortly.</p>
-                <button class="btn btn-secondary" @onclick="ResetForm">Send Another Message</button>
-            </div>
-        }
-        else
-        {
-            <form @onsubmit="SubmitForm" class="custom-form">
-                <!-- Bot Protection Honeypot -->
-                <input type="text" @bind="botHoneypot" class="visually-hidden" tabindex="-1" autocomplete="off" />
+    <div class="content-container">
+        <div class="contact-grid">
+            <!-- Left Side: Contractor Info -->
+            <div class="contact-info-col">
+                <div class="contractor-card">
+                    <div class="industrial-kicker">Direct Contact</div>
+                    <h2>TALK TO SCOTT DIRECTLY</h2>
+                    <p>
+                        Have questions about a steep mountain build, footing dig, or ready to get on our pour schedule? Call Scott Barrera directly on his mobile line.
+                    </p>
 
-                @if (!string.IsNullOrWhiteSpace(errorMessage))
-                {
-                    <div class="error-banner" role="alert">
-                        @errorMessage
+                    <div class="contact-action-box">
+                        <span class="action-label">MOBILE / DIRECT LINE</span>
+                        <a href="tel:@BusinessConfig.Value.PhoneNumber" class="direct-phone-link">
+                            📞 @BusinessConfig.Value.PhoneNumber
+                        </a>
                     </div>
-                }
 
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" @bind="name" required placeholder="Your Name" />
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" @bind="phoneNumber" required placeholder="(555) 555-5555" />
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" @bind="email" required placeholder="your.email@example.com" />
-                </div>
-                <div class="form-group">
-                    <label for="contactMethod">Preferred Contact Method</label>
-                    <select id="contactMethod" @bind="contactMethod" required>
-                        <option value="">Select...</option>
-                        @foreach (var method in ContactConfig.Value.ContactMethods)
-                        {
-                            <option value="@method">@method</option>
-                        }
-                    </select>
-                </div>
+                    <div class="contact-action-box">
+                        <span class="action-label">EMAIL BLUEPRINTS &amp; SPECS</span>
+                        <a href="mailto:@BusinessConfig.Value.PrimaryEmail" class="direct-email-link">
+                            ✉️ @BusinessConfig.Value.PrimaryEmail
+                        </a>
+                    </div>
 
-                @if (ContactConfig.Value.ServiceOptions.Any())
-                {
-                    <div class="form-group">
-                        <label for="serviceType">@ContactConfig.Value.ServiceSelectLabel</label>
-                        <select id="serviceType" @bind="serviceType" required>
-                            <option value="">Select...</option>
-                            @foreach (var option in ContactConfig.Value.ServiceOptions)
+                    <div class="contact-meta-list">
+                        <div class="meta-item">
+                            <strong>Headquarters:</strong>
+                            <span>Cleveland, TN 37311</span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Service Area:</strong>
+                            <span>Bradley, Hamilton, Polk, Meigs, Rhea, Marion Counties &amp; North Georgia</span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Operating Hours:</strong>
+                            <span>Monday – Friday: 7:00 AM – 6:00 PM<br />Saturday: By Appointment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: The Form -->
+            <div class="contact-form-col">
+                <div class="form-wrapper-card">
+                    @if (isSubmitted)
+                    {
+                        <div class="success-message-box">
+                            <div class="success-check-icon">✓</div>
+                            <h3>ESTIMATE REQUEST RECEIVED</h3>
+                            <p>Thank you for reaching out. Scott Barrera has received your project details and will review your requirements and follow up promptly.</p>
+                            <p style="font-size: 0.9rem; color: #64748b; margin-top: 1rem;">Need immediate answers? Call Scott at <strong>(423) 457-2024</strong>.</p>
+                            <button class="btn btn-primary" style="margin-top: 1.5rem;" @onclick="ResetForm">Submit Another Inquiry</button>
+                        </div>
+                    }
+                    else
+                    {
+                        <form @onsubmit="SubmitForm" class="industrial-form">
+                            <!-- Bot Protection Honeypot -->
+                            <input type="text" @bind="botHoneypot" class="visually-hidden" tabindex="-1" autocomplete="off" />
+
+                            <div class="form-header">
+                                <h3>PROJECT DETAILS &amp; SPECIFICATIONS</h3>
+                                <p>Fill out the form below and Scott will follow up with estimate details.</p>
+                            </div>
+
+                            @if (!string.IsNullOrWhiteSpace(errorMessage))
                             {
-                                <option value="@option">@option</option>
+                                <div class="error-banner" role="alert">
+                                    @errorMessage
+                                </div>
                             }
-                        </select>
-                    </div>
-                }
 
-                @if (ContactConfig.Value.ShowStartDate)
-                {
-                    <div class="form-group">
-                        <label for="startDate">@ContactConfig.Value.StartDateLabel</label>
-                        <input type="date" id="startDate" @bind="startDate" required="@ContactConfig.Value.StartDateRequired" />
-                    </div>
-                }
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Your Name / Builder Name *</label>
+                                    <input type="text" id="name" @bind="name" required placeholder="John Doe or Homeowner Name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" @bind="phoneNumber" required placeholder="(423) 555-0123" />
+                                </div>
+                            </div>
 
-                <div class="form-group">
-                    <label for="message">Additional Information</label>
-                    <textarea id="message" @bind="message" required rows="5" placeholder="Please share any specific needs or questions..."></textarea>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" @bind="email" required placeholder="john@example.com" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="serviceType">Service Required *</label>
+                                    <select id="serviceType" @bind="serviceType" required>
+                                        <option value="">Select Foundation Service...</option>
+                                        <option value="Poured Concrete Basement Walls">Poured Concrete Basement Walls</option>
+                                        <option value="Radius (Curved) Retaining Wall">Radius (Curved) Retaining Wall</option>
+                                        <option value="Tornado Safe Room / Storm Shelter">Tornado Safe Room / Storm Shelter</option>
+                                        <option value="Turnkey Footing Dig & Trenching">Turnkey Footing Dig &amp; Trenching</option>
+                                        <option value="Commercial Foundation / Grade Beam">Commercial Foundation / Grade Beam</option>
+                                        <option value="Other Concrete Service">Other Concrete Service</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactMethod">Preferred Response Method</label>
+                                    <select id="contactMethod" @bind="contactMethod">
+                                        <option value="Phone Call">Phone Call</option>
+                                        <option value="Text Message">Text Message</option>
+                                        <option value="Email">Email</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="startDate">Target Pour / Start Date</label>
+                                    <input type="date" id="startDate" @bind="startDate" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Project Description, Wall Dimensions &amp; Location *</label>
+                                <textarea id="message" @bind="message" required rows="5" placeholder="Share wall heights (e.g. 9ft or 10ft basement), linear footage, site location (city/county), hillside conditions, or blueprint details..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary submit-btn" disabled="@isSubmitting">
+                                @(isSubmitting ? "TRANSMITTING TO SCOTT..." : "SUBMIT ESTIMATE REQUEST")
+                            </button>
+                        </form>
+                    }
                 </div>
-
-                <button type="submit" class="btn btn-primary" disabled="@isSubmitting">
-                    @(isSubmitting ? "Sending..." : "Send Message")
-                </button>
-            </form>
-        }
+            </div>
+        </div>
     </div>
 </div>
 
@@ -113,7 +155,7 @@
     private string name = "";
     private string phoneNumber = "";
     private string email = "";
-    private string contactMethod = "";
+    private string contactMethod = "Phone Call";
     private string serviceType = "";
     private DateTime? startDate = null;
     private string message = "";
@@ -128,7 +170,6 @@
         isSubmitting = true;
         errorMessage = null;
 
-        // Bot trap: If filled, fake a successful submission and exit
         if (!string.IsNullOrEmpty(botHoneypot))
         {
             isSubmitted = true;
@@ -160,13 +201,13 @@
             }
             else
             {
-                errorMessage = $"We couldn't submit your request right now. Please call us directly at {BusinessConfig.Value.PhoneNumber}.";
+                errorMessage = $"We couldn't submit your request right now. Please call Scott directly at {BusinessConfig.Value.PhoneNumber}.";
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Submission failed: {ex.Message}");
-            errorMessage = $"Network error while sending your message. Please call us directly at {BusinessConfig.Value.PhoneNumber}.";
+            errorMessage = $"Network error while sending your message. Please call Scott directly at {BusinessConfig.Value.PhoneNumber}.";
         }
         finally
         {
@@ -179,7 +220,7 @@
         name = "";
         phoneNumber = "";
         email = "";
-        contactMethod = "";
+        contactMethod = "Phone Call";
         serviceType = "";
         startDate = null;
         message = "";

@@ -2,73 +2,113 @@
 @inject IOptions<BusinessSettings> BusinessConfig
 @inject IOptions<AboutPageSettings> AboutConfig
 
-<PageTitle>@AboutConfig.Value.NavTitle | @BusinessConfig.Value.ShortName</PageTitle>
+<PageTitle>About Scott Barrera | @BusinessConfig.Value.ShortName</PageTitle>
 
-<div class="about-container">
-    <div class="intro-section">
-        <h1 class="script-heading">@AboutConfig.Value.Heading</h1>
-        <h2>@AboutConfig.Value.Subheading</h2>
-        <p class="lead-text">@AboutConfig.Value.LeadText</p>
-    </div>
-
-    <div class="founder-profile" style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; margin-bottom: 2.5rem; background: #ffffff; padding: 1.5rem 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border-left: 5px solid var(--brand-accent);">
-        <img src="images/scotty-barrera.jpg" alt="Scott Barrera" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid var(--brand-accent); box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
-        <div style="flex: 1; min-width: 250px;">
-            <h3 style="color: var(--brand-primary); margin: 0 0 0.25rem 0; font-size: 1.35rem; font-weight: bold;">Scott Barrera</h3>
-            <p style="color: var(--brand-accent); font-weight: 600; margin: 0 0 0.5rem 0; font-size: 0.95rem;">Owner & Founder • Premier Poured Walls LLC</p>
-            <p style="margin: 0; color: #4b5563; font-size: 0.95rem; line-height: 1.6;">Based in Cleveland, TN and proudly serving Southeast Tennessee and North Georgia. Scott personally manages every project—from initial footing trenching and steel rebar grid setup to high-precision wall forming and the final concrete pour.</p>
+<div class="about-page-wrapper">
+    <!-- HERO HEADER -->
+    <section class="about-hero-header">
+        <div class="content-container">
+            <div class="industrial-kicker industrial-kicker-hazard">On-Site Leadership &amp; Engineering</div>
+            <h1 class="about-hero-title">MEET SCOTT BARRERA</h1>
+            <p class="about-hero-lead">
+                Owner, operator, and on-site concrete specialist behind Premier Poured Walls LLC in Cleveland, Tennessee.
+            </p>
         </div>
-    </div>
+    </section>
 
-    <div class="family-story-card" style="background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.04); margin-bottom: 2.5rem; display: flex; flex-wrap: wrap; border-top: 4px solid var(--brand-primary);">
-        <div style="flex: 1 1 350px; max-height: 320px; overflow: hidden;">
-            <img src="images/scotty-family.jpg" alt="Scott Barrera Family" style="width: 100%; height: 100%; object-fit: cover;" />
-        </div>
-        <div style="flex: 1 1 350px; padding: 2rem; display: flex; flex-direction: column; justify-content: center;">
-            <span style="color: var(--brand-accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Rooted in Southeast Tennessee & North Georgia</span>
-            <h3 style="color: var(--brand-primary); font-size: 1.4rem; margin: 0 0 1rem 0;">Quality & Integrity in Every Pour</h3>
-            <p style="color: #4b5563; line-height: 1.7; margin: 0 0 1rem 0;">At Premier Poured Walls LLC, we treat every basement, retaining wall, and storm shelter as if it were holding up our own family home. With specialized steel formwork, heavy vibrated consolidation, and laser-guided leveling, we build structures that endure for generations.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; color: var(--brand-primary); font-weight: 600; font-size: 0.95rem;">
-                <span>✓ On-Site Owner Leadership</span>
-                <span>✓ Monolithic Strength</span>
-                <span>✓ Built for Regional Terrain</span>
+    <div class="content-container">
+        <!-- FOUNDER SPOTLIGHT CARD -->
+        <div class="founder-spotlight-card">
+            <div class="founder-badge-column">
+                <div class="founder-emblem-box">
+                    <img src="images/logo.png" alt="Premier Poured Walls LLC" class="founder-logo" />
+                </div>
+                <div class="founder-id-box">
+                    <h3>SCOTT BARRERA</h3>
+                    <span class="founder-role">Owner &amp; Operator</span>
+                    <span class="founder-location">📍 Cleveland, TN</span>
+                    <a href="tel:@BusinessConfig.Value.PhoneNumber" class="founder-phone-btn">
+                        📞 (423) 457-2024
+                    </a>
+                </div>
+            </div>
+
+            <div class="founder-bio-column">
+                <div class="industrial-kicker">Hands-On Foundation Contractor</div>
+                <h2>"QUALITY AND INTEGRITY IN EVERY POUR."</h2>
+                <p>
+                    When you hire Premier Poured Walls LLC, you don't get a middleman salesman or an outsourced crew. <strong>Scott Barrera is on the job site personally managing every phase of your project</strong>—from the initial laser-graded footing trench and steel rebar cage placement to the precision erection of steel wall forms and the continuous boom-pump pour.
+                </p>
+                <p>
+                    Based in Cleveland, Tennessee, Scott has built Premier Poured Walls on an uncompromising commitment to structural excellence. Whether navigating the steep hillside grades of Lookout Mountain, pouring complex multi-tier radius retaining walls in Dunlap, or integrating a Fort Knox-grade tornado safe room into a custom residential basement, Scott brings decades of specialized poured concrete expertise to every square foot.
+                </p>
+                
+                <div class="founder-creds-grid">
+                    <div class="cred-item">
+                        <strong>100% Owner Supervised</strong>
+                        <span>Scott is on-site ensuring form alignment, plumb lines, and proper vibration.</span>
+                    </div>
+                    <div class="cred-item">
+                        <strong>Turnkey Execution</strong>
+                        <span>From raw site excavation and footing digs to continuous placement and form stripping.</span>
+                    </div>
+                    <div class="cred-item">
+                        <strong>Commercial-Grade Ready Mix</strong>
+                        <span>4,000+ PSI concrete with engineered rebar grids built to hold up forever homes.</span>
+                    </div>
+                    <div class="cred-item">
+                        <strong>Regional Terrain Specialists</strong>
+                        <span>Experienced in steep mountain cuts, heavy rock conditions, and extreme backfill loads.</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="content-grid">
-        <div class="card who-i-am">
-            <h3>@AboutConfig.Value.WhoIAmTitle</h3>
-            <ul>
-                @foreach (var item in AboutConfig.Value.WhoIAmBullets)
-                {
-                    <li>@item</li>
-                }
-            </ul>
+        <!-- ON-SITE CRAFTSMANSHIP SHOWCASE -->
+        <div class="craftsmanship-showcase-section">
+            <div class="showcase-header">
+                <div class="industrial-kicker">Precision Formwork &amp; Pours</div>
+                <h2>THE PREMIER DIFFERENCE ON THE JOB SITE</h2>
+                <p>
+                    See the heavy-duty steel formwork, continuous placement, and finished monolithic structures built by Scott and the Premier crew across Southeast Tennessee.
+                </p>
+            </div>
+
+            <div class="showcase-dual-cards">
+                <div class="showcase-card">
+                    <div class="showcase-img-box">
+                        <img src="images/projects/project-1.jpg" alt="Poured Concrete Wall Forms by Scott Barrera" loading="lazy" />
+                    </div>
+                    <div class="showcase-body">
+                        <h3>Precision Steel Form Erection</h3>
+                        <p>High-capacity steel forms are laser-aligned and heavily braced to withstand massive hydrostatic pressure during continuous concrete pumping, ensuring perfectly plumb, square walls.</p>
+                        <span class="showcase-tag">📍 Lookout Mountain, TN</span>
+                    </div>
+                </div>
+
+                <div class="showcase-card">
+                    <div class="showcase-img-box">
+                        <img src="images/projects/project-5.jpg" alt="Finished Residential Basement Pour in Southeast TN" loading="lazy" />
+                    </div>
+                    <div class="showcase-body">
+                        <h3>Turnkey Mountain Foundations</h3>
+                        <p>Navigating extreme elevations and heavy red-clay backfill with reinforced monolithic concrete footings, stepped walls, and engineered drainage planes.</p>
+                        <span class="showcase-tag">📍 Dunlap &amp; Ocoee, TN</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="card why-i-started">
-            <h3>@AboutConfig.Value.WhyStartedTitle</h3>
-            @foreach (var p in AboutConfig.Value.WhyStartedParagraphs)
-            {
-                <p>@p</p>
-            }
-        </div>
-    </div>
-
-    <div class="closing-section">
-        @if (!string.IsNullOrWhiteSpace(AboutConfig.Value.ClosingQuote))
-        {
-            <p class="calling-text">"@AboutConfig.Value.ClosingQuote"</p>
-        }
-        <p>@AboutConfig.Value.ClosingText</p>
-        <h4>@AboutConfig.Value.ThankYouNote</h4>
-
-        <div class="core-values">
-            @foreach (var val in AboutConfig.Value.CoreValues)
-            {
-                <span>✦ @val</span>
-            }
+        <!-- CALL TO ACTION -->
+        <div class="about-cta-bar">
+            <div>
+                <h3>DISCUSS YOUR UPCOMING FOUNDATION WITH SCOTT</h3>
+                <p>Have blueprints, site plans, or questions about poured concrete basements or tornado safe rooms? Call Scott directly today.</p>
+            </div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="tel:@BusinessConfig.Value.PhoneNumber" class="btn btn-primary">Call Scott: (423) 457-2024</a>
+                <a href="/contact" class="btn btn-secondary">Submit Project Plans</a>
+            </div>
         </div>
     </div>
 </div>

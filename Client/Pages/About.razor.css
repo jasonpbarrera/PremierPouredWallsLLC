@@ -1,119 +1,295 @@
-.about-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    color: var(--brand-primary);
+/* ==========================================================================
+   ABOUT SCOTT BARRERA PAGE STYLES (ABOUT.RAZOR.CSS)
+   ========================================================================== */
+
+.about-page-wrapper {
+    background-color: #f8fafc;
+    padding-bottom: 5rem;
 }
 
-.intro-section {
-    text-align: center;
-    margin-bottom: 3rem;
+.about-hero-header {
+    background: linear-gradient(135deg, #0a1118 0%, #151f2b 100%);
+    color: #ffffff;
+    padding: 4rem 0 3.5rem 0;
+    border-bottom: 4px solid var(--brand-accent);
 }
 
-.script-heading {
-    font-family: var(--font-heading);
-    font-size: 3.5rem;
-    color: var(--brand-accent);
-    margin-bottom: 0.5rem;
-    font-style: italic;
+.about-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
 }
 
-.intro-section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+.about-hero-lead {
+    font-size: 1.15rem;
+    color: #94a3b8;
+    max-width: 680px;
+    line-height: 1.6;
+    margin: 0;
 }
 
-.lead-text {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.content-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-
-@media (min-width: 768px) {
-    .content-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-.card {
-    background-color: var(--white);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border-top: 4px solid var(--brand-accent);
-}
-
-    .card h3 {
-        color: var(--brand-accent);
-        font-size: 1.4rem;
-        margin-bottom: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-.who-i-am ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.who-i-am li {
-    margin-bottom: 1rem;
+/* FOUNDER SPOTLIGHT CARD */
+.founder-spotlight-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(10, 17, 24, 0.06);
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -2rem;
+    margin-bottom: 4rem;
+    overflow: hidden;
     position: relative;
-    padding-left: 1.5rem;
+    z-index: 10;
 }
 
-    .who-i-am li::before {
-        content: '•';
-        color: var(--brand-accent);
-        position: absolute;
-        left: 0;
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-.why-i-started p {
-    margin-bottom: 1rem;
-    line-height: 1.7;
-}
-
-.closing-section {
-    text-align: center;
-    background-color: var(--brand-surface);
+.founder-badge-column {
+    flex: 0 0 300px;
+    background: linear-gradient(180deg, #0f1722 0%, #0a1118 100%);
+    color: #ffffff;
     padding: 3rem 2rem;
-    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-right: 3px solid var(--brand-accent);
 }
 
-.calling-text {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-style: italic;
-    color: var(--brand-primary);
+.founder-emblem-box {
+    width: 140px;
+    height: 140px;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    border: 2px solid var(--brand-accent-glow);
+}
+
+.founder-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.founder-id-box h3 {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.04em;
+}
+
+.founder-role {
+    font-size: 0.9rem;
+    color: var(--brand-accent-glow);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.founder-location {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    display: block;
     margin-bottom: 1.5rem;
 }
 
-.closing-section h4 {
-    margin-top: 2rem;
+.founder-phone-btn {
+    display: inline-block;
+    background: var(--brand-accent);
+    color: #ffffff !important;
+    padding: 0.65rem 1.25rem;
+    border-radius: 4px;
+    font-family: var(--font-display);
     font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--brand-accent);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
 }
 
-.core-values {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.founder-phone-btn:hover {
+    background: var(--brand-accent-hover);
+    transform: translateY(-2px);
+}
+
+.founder-bio-column {
+    flex: 1 1 500px;
+    padding: 3rem;
+}
+
+.founder-bio-column h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--brand-primary);
+    margin-bottom: 1.25rem;
+    line-height: 1.1;
+}
+
+.founder-bio-column p {
+    font-size: 1.05rem;
+    color: #334155;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+}
+
+.founder-creds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
-    font-weight: bold;
-    font-size: 0.9rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.cred-item {
+    border-left: 3px solid var(--brand-accent);
+    padding-left: 1rem;
+}
+
+.cred-item strong {
+    display: block;
     color: var(--brand-primary);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.cred-item span {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.5;
+    display: block;
+}
+
+/* CRAFTSMANSHIP SHOWCASE */
+.craftsmanship-showcase-section {
+    margin-bottom: 4rem;
+}
+
+.showcase-header {
+    margin-bottom: 2.5rem;
+    max-width: 780px;
+}
+
+.showcase-header h2 {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    color: var(--brand-primary);
+}
+
+.showcase-header p {
+    font-size: 1.1rem;
+    color: #475569;
+}
+
+.showcase-dual-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+}
+
+.showcase-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.showcase-img-box {
+    height: 260px;
+    background-color: #0a1118;
+}
+
+.showcase-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.showcase-body {
+    padding: 1.75rem;
+}
+
+.showcase-body h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--brand-primary);
+    margin-bottom: 0.5rem;
+}
+
+.showcase-body p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.showcase-tag {
+    display: inline-block;
+    background: #f1f5f9;
+    color: var(--brand-accent);
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* CTA BAR */
+.about-cta-bar {
+    background: linear-gradient(135deg, #0a1118 0%, #151f2b 100%);
+    border-radius: 8px;
+    border-left: 6px solid var(--brand-accent);
+    padding: 3rem 2.5rem;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.about-cta-bar h3 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.about-cta-bar p {
+    color: #94a3b8;
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+    .founder-spotlight-card {
+        flex-direction: column;
+    }
+
+    .founder-badge-column {
+        flex: auto;
+        border-right: none;
+        border-bottom: 3px solid var(--brand-accent);
+        width: 100%;
+    }
+
+    .founder-bio-column {
+        padding: 2rem 1.5rem;
+    }
+
+    .about-cta-bar {
+        padding: 2rem 1.5rem;
+    }
 }

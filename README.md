@@ -45,7 +45,6 @@ graph LR
   * `wwwroot/appsettings.json` — Complete brand configuration, color palette, services list, project gallery items, testimonials, and contact form settings
   * `wwwroot/images/logo.png` & `logo.jpg` — Official Premier Poured Walls concrete mixer truck & buildings logo
   * `wwwroot/images/banner.jpg` — Official Facebook cover header banner
-  * `wwwroot/images/scotty-barrera.jpg` & `scotty-family.jpg` — Founder and family photography
   * `wwwroot/images/projects/` — 10 curated on-site work photos from real projects in Dunlap, Lookout Mountain, Rocky Face GA, Reliance Castle, Ocoee, Ducktown, and South Cleveland
   * `Models/SiteConfiguration.cs` — Strongly typed configuration models
   * `Layout/MainLayout.razor` — Dynamic CSS variable injection and responsive header/footer layout
