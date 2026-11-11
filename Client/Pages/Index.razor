@@ -31,7 +31,9 @@
     @foreach (var pillar in HomeConfig.Value.Pillars)
     {
         <div class="pillar-card">
-            <div class="icon-placeholder">@pillar.Icon</div>
+            <div class="icon-placeholder">
+                <ToughIcon Name="@pillar.Icon" CssClass="tough-svg" />
+            </div>
             <h3>@pillar.Title</h3>
             <p>@pillar.Description</p>
         </div>

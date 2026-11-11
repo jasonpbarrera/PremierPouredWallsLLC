@@ -15,7 +15,9 @@
         @foreach (var service in ServicesConfig.Value.Services)
         {
             <div class="service-card">
-                <div class="service-icon">@service.Icon</div>
+                <div class="service-icon">
+                    <ToughIcon Name="@service.Icon" CssClass="tough-svg" />
+                </div>
                 <h3>@service.Title</h3>
                 <p>@service.Description</p>
             </div>
