@@ -502,6 +502,34 @@ a:hover {
 
     .footer-bottom {
         flex-direction: column;
-        text-align: center;
+        display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem 1rem;
     }
+}
+
+/* Discreet JB Digital Technologies Footer Credit (Standing Rule) */
+.jb-footer-credit {
+    margin-left: auto;
+    font-size: 0.7rem;
+    opacity: 0.45;
+    transition: opacity 0.2s ease;
+    text-align: right;
+    color: inherit;
+}
+
+.jb-footer-credit:hover {
+    opacity: 0.85;
+}
+
+.jb-footer-credit a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.jb-footer-credit a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
